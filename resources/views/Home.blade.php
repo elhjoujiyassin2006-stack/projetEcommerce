@@ -11,26 +11,7 @@
         <p>Explorez nos catégories et trouvez les produits qui vous correspondent.</p>
     </div>
 
-    <div class="row mt-5">
-        <div class="col-md-6 mb-4">
-            <div class="card product-card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Équipement Hiking</h5>
-                    <p class="card-text">Trouvez tout ce dont vous avez besoin pour vos aventures en montagne. Sacs à dos, tentes, montres GPS et bien plus.</p>
-                    <a href="/produits/hiking" class="btn btn-primary">Voir la catégorie</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="card product-card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Électroménager</h5>
-                    <p class="card-text">Équipez votre cuisine avec nos appareils électroménagers de qualité. Machine à laver, fours, micro-ondes et plus.</p>
-                    <a href="/produits/electromenager" class="btn btn-primary">Voir la catégorie</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="row mt-4">
         <div class="col-md-12">
