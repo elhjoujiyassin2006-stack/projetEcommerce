@@ -5,10 +5,10 @@
 @section('content')
 <div class="py-5">
     <div class="jumbotron bg-white rounded-lg p-5 mb-4">
-        <h1 class="display-4">Bienvenue sur E-Commerce</h1>
-        <p class="lead">Découvrez nos produits de qualité en équipement outdoor et électroménager</p>
+        <h1 class="display-4">L'excellence au poignet</h1>
+        <p class="lead">Plongez dans l'univers du luxe et de la précision.</p>
         <hr class="my-4">
-        <p>Explorez nos catégories et trouvez les produits qui vous correspondent.</p>
+        <p>Nos montres incarnent le savoir-faire, l'élégance et l'innovation, pour celles et ceux qui exigent l'excellence.</p>
     </div>
 
     

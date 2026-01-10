@@ -6,23 +6,27 @@ Route::get('/', function () {
     return view('Home');
 });
 
+Route::get('/a-propos', function () {
+    return view('About');
+});
+
+Route::get('/contact', function () {
+    return view('Contact');
+});
+
 Route::get('/produits/{cat}', function ($cat) { 
     $produits = []; 
  
-    if ($cat == 'hiking') { 
+    if ($cat == 'Nos montres') { 
         $produits = [ 
-            ["nom" => "Sac à dos", "prix" => 200, "image" => "img5.jpeg"], 
-            ["nom" => "Tente", "prix" => 300, "image" => "img6.jpeg"], 
-            ["nom" => "Montre GPS", "prix" => 150, "image" => "img4.jpeg"] 
+            ["nom" => "Rolex", "prix" => 300, "image" => "m1.jpeg"], 
+            ["nom" => "Tephea", "prix" => 500, "image" => "m2.jpeg"], 
+            ["nom" => "Time Master", "prix" => 850, "image" => "m3.jpeg"],
+            ["nom" => "Cartier", "prix" => 350, "image" => "m4.jpeg"] ,
+            ["nom" => "Patek Philippe", "prix" => 950, "image" => "m5.jpeg"] 
         ]; 
     } 
-    elseif ($cat == 'electromenager') { 
-        $produits = [ 
-            ["nom" => "Machine à laver", "prix" => 3000, "image" => "img3.jpeg"], 
-            ["nom" => "Four", "prix" => 1500, "image" => "img1.jpeg"], 
-            ["nom" => "Micro-onde", "prix" => 1000, "image" => "img2.jpeg"] 
-        ]; 
-    } 
+   
  
     return view('Produits', [ 
         'products' => $produits, 

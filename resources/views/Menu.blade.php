@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">PrimeShop</a>
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+            <img src="{{ asset('imgs/logo.png') }}" alt="PrimeShop Logo" style="height: 40px; width: auto;">
+            <span>PrimeShop</span>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -10,13 +13,18 @@
                     <a class="nav-link" href="/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/produits/hiking">
-                        Hiking
+                    <a class="nav-link" href="/produits/Nos montres">
+                        Nos montres
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/produits/electromenager">
-                        Électroménager
+                    <a class="nav-link" href="/a-propos">
+                        A propos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">
+                        Contact
                     </a>
                 </li>
             </ul>
