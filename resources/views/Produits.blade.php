@@ -63,5 +63,6 @@
     <div class="mt-4">
         <a href="/" class="btn btn-secondary">Retour à l'accueil</a>
     </div>
+    {{ $products->links('pagination::bootstrap-5') }}
 </div>
 @endsection
