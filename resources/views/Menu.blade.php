@@ -13,8 +13,13 @@
                     <a class="nav-link" href="/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/produits/Nos montres">
-                        Nos montres
+                    <a class="nav-link" href="/produits/Men">
+                        Men
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/produits/Women">
+                        Women
                     </a>
                 </li>
                 <li class="nav-item">

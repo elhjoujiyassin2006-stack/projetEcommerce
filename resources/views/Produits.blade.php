@@ -13,7 +13,7 @@
                     <div class="card product-card h-100">
                         <img src="{{ asset('imgs/' . $item['image']) }}" alt="{{ $item['nom'] }}" class="card-img-top" style="height: 250px; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $item['nom'] }}</h5>
+                            <h5 class="card-title">{{ $item['titre'] }}</h5>
                             <p class="card-text text-muted">
                                 <strong>Prix:</strong> {{ $item['prix'] }} DH
                             </p>
@@ -40,7 +40,7 @@
                     @foreach ($products as $item)
                         <tr>
                             <td>
-                                <strong>{{ $item['nom'] }}</strong>
+                                <strong>{{ $item['titre'] }}</strong>
                             </td>
                             <td>
                                 <span class="badge bg-success">{{ $item['prix'] }} DH</span>
