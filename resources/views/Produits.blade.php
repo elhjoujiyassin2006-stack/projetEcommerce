@@ -5,19 +5,25 @@
 @section('content')
 <div class="py-5">
     <h1 class="mb-4">Produits - {{ ucfirst($categorie) }}</h1>
+    @include('incs.flash')
     
     @if(count($products) > 0)
         <div class="row">
             @foreach ($products as $item)
                 <div class="col-md-4 mb-4">
                     <div class="card product-card h-100">
-                        <img src="{{ asset('imgs/' . $item['image']) }}" alt="{{ $item['nom'] }}" class="card-img-top" style="height: 250px; object-fit: cover;">
+                        <img src="{{ $item['image'] }}" alt="{{ $item['nom'] }}" class="card-img-top" style="height: 250px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $item['titre'] }}</h5>
                             <p class="card-text text-muted">
                                 <strong>Prix:</strong> {{ $item['prix'] }} DH
                             </p>
-                            <button class="btn btn-primary w-100">Ajouter au panier</button>
+                            <a href="{{ route('produits.edit', $item['id']) }}" class="btn btn-primary">Éditer</a>
+                            <form action="{{ route('produits.destroy', $item['id']) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -46,7 +52,7 @@
                                 <span class="badge bg-success">{{ $item['prix'] }} DH</span>
                             </td>
                             <td>
-                                <img src="{{ asset('imgs/' . $item['image']) }}" alt="{{ $item['nom'] }}" width="100" class="rounded">
+                                <img src="{{ $item['image'] }}" alt="{{ $item['nom'] }}" width="100" class="rounded">
                             </td>
                         </tr>
                     @endforeach
