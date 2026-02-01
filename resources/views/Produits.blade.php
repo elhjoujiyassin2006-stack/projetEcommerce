@@ -4,8 +4,8 @@
 
 @section('content')
 <div class="py-5">
-    <h1 class="mb-4">Produits - {{ ucfirst($categorie) }}</h1>
-    @include('incs.flash')
+    <h1 class="mb-4 text-3xl font-bold text-gray-800">{{ $categorie === 'Tous les produits' ? $categorie : 'Produits - ' . ucfirst($categorie) }}</h1>
+
     
     @if(count($products) > 0)
         <div class="row">
@@ -18,12 +18,16 @@
                             <p class="card-text text-muted">
                                 <strong>Prix:</strong> {{ $item['prix'] }} DH
                             </p>
-                            <a href="{{ route('produits.edit', $item['id']) }}" class="btn btn-primary">Éditer</a>
-                            <form action="{{ route('produits.destroy', $item['id']) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
-                            </form>
+                            @if(Auth::check() && Auth::user()->role === 'ADMIN')
+                                <div class="mt-4 flex gap-2">
+                                    <a href="{{ route('produits.edit', $item['id']) }}" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-opacity-90 transition-colors text-sm">Éditer</a>
+                                    <form action="{{ route('produits.destroy', $item['id']) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition-colors text-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
+                                    </form>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -67,7 +71,7 @@
     @endif
     
     <div class="mt-4">
-        <a href="/" class="btn btn-secondary">Retour à l'accueil</a>
+        <a href="/" class="inline-block px-4 py-2 bg-secondary text-white rounded hover:bg-opacity-90 transition-colors">Retour à l'accueil</a>
     </div>
     {{ $products->links('pagination::bootstrap-5') }}
 </div>

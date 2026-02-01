@@ -52,7 +52,7 @@ class Rproductcontroler extends Controller
             'folder' => 'products',
         ])['secure_url'];
 
-        Product::insert([
+        Product::create([
             'titre' => $titre,
             'contenu' => $contenu,
             'prix' => $prix,

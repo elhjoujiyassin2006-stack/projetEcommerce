@@ -1,21 +1,39 @@
 <?php
 
-use App\Http\Controllers\Productcontroller;
-use App\Http\Controllers\Rproductcontroler;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Productcontroller;
+use App\Http\Controllers\Rproductcontroler;
+
 Route::get('/', function () {
-    return view('Home');
+    return view('Master_page');
 });
 
 Route::get('/a-propos', function () {
-    return view('About');
-});
+    return view('Apropos');
+})->name('about');
 
 Route::get('/contact', function () {
     return view('Contact');
+})->name('contact');
+
+Route::get('/dashboard', [Productcontroller::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/produits/categorie/{cat}', [Productcontroller::class, 'getProductsByCategorie'])->name('products.category');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Product Routes
+    Route::get('/produits/create', [Rproductcontroler::class, 'create'])->name('produits.create');
+    Route::post('/produits', [Rproductcontroler::class, 'store'])->name('produits.store');
+    Route::get('/produits', [Rproductcontroler::class, 'index'])->name('produits.index');
+    Route::get('/produits/{id}/edit', [Rproductcontroler::class, 'edit'])->name('produits.edit');
+    Route::put('/produits/{id}', [Rproductcontroler::class, 'update'])->name('produits.update');
+    Route::delete('/produits/{id}', [Rproductcontroler::class, 'destroy'])->name('produits.destroy');
 });
 
-Route::get('/produits/categorie/{cat}', [Productcontroller::class, 'getProductsByCategorie']);
-
-Route::resource('produits',Rproductcontroler::class);
+require __DIR__.'/auth.php';
