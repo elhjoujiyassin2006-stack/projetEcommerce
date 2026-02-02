@@ -43,4 +43,11 @@ Route::middleware(['adminuser'])->group(function () {
     Route::get('/espaceadmin', [Productcontroller::class, 'espaceadmin']);
 });
 
+// Email Routes
+Route::get('/email', [Rproductcontroler::class,'email'])->name('email.form');
+Route::post('/send/email', [Rproductcontroler::class, 'sendEmail'])->name('send.email');
+Route::get('/send/email', function () {
+    return redirect()->route('email.form');
+});
+
 require __DIR__.'/auth.php';

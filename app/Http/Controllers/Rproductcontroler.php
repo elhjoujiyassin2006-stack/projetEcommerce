@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Cloudinary\Cloudinary;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
+
 class Rproductcontroler extends Controller
 {
     /**
@@ -123,5 +126,30 @@ class Rproductcontroler extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
         return redirect()->route('produits.index')->with('success', 'Product deleted successfully.');
+    }
+
+    /**
+     * Afficher la page du formulaire d'email.
+     */
+    public function email()
+    {
+        return view('email');
+    }
+
+    /**
+     * Envoyer l'email.
+     */
+    public function sendEmail(Request $request)
+    {
+        $data = [
+            'recipient_email' => $request->input('recipient_email'),
+            'subject' => $request->input('subject'),
+            'message' => $request->input('message'),
+        ];
+
+        // Envoyer l'e-mail en utilisant la classe Mailable
+        Mail::to($data['recipient_email'])->send(new TestMail($data));
+
+        return back()->with('success','Email sent successfully!');
     }
 }
