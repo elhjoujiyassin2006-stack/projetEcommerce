@@ -20,6 +20,12 @@ return Application::configure(basePath: dirname(__DIR__))
         Request::HEADER_X_FORWARDED_PORT |
         Request::HEADER_X_FORWARDED_PROTO
         );
+
+        // Alias middleware
+        $middleware->alias([
+            'adminuser' => \App\Http\Middleware\AdminUserMiddleware::class,
+            'useruser' => \App\Http\Middleware\UserMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

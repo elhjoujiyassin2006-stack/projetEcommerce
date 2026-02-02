@@ -27,13 +27,20 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Product Routes
+    // User Routes
+    Route::get('/espaceclient', [Productcontroller::class, 'espaceclient'])->middleware('useruser');
+});
+
+// Admin Routes
+Route::middleware(['adminuser'])->group(function () {
     Route::get('/produits/create', [Rproductcontroler::class, 'create'])->name('produits.create');
     Route::post('/produits', [Rproductcontroler::class, 'store'])->name('produits.store');
     Route::get('/produits', [Rproductcontroler::class, 'index'])->name('produits.index');
     Route::get('/produits/{id}/edit', [Rproductcontroler::class, 'edit'])->name('produits.edit');
     Route::put('/produits/{id}', [Rproductcontroler::class, 'update'])->name('produits.update');
     Route::delete('/produits/{id}', [Rproductcontroler::class, 'destroy'])->name('produits.destroy');
+    
+    Route::get('/espaceadmin', [Productcontroller::class, 'espaceadmin']);
 });
 
 require __DIR__.'/auth.php';
