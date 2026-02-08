@@ -149,6 +149,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+
+            @if(session('order_success'))
+                <script>
+                    alert("{{ session('order_success') }}");
+                </script>
+            @endif
             
             @if(request()->is('/'))
             <!-- Hero Section -->

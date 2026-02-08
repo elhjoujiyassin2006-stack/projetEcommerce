@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Productcontroller;
 use App\Http\Controllers\Rproductcontroler;
+use App\Http\Controllers\CartController;
 
 Route::get('/', function () {
     return view('Master_page');
@@ -21,6 +22,15 @@ Route::get('/contact', function () {
 Route::get('/dashboard', [Productcontroller::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/produits/categorie/{cat}', [Productcontroller::class, 'getProductsByCategorie'])->name('products.category');
+
+// Cart Routes
+Route::get('/panier', [CartController::class, 'viewCart'])->name('cart.view');
+Route::post('/panier/ajouter', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/panier/supprimer', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/panier/modifier', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('/panier/vider', [CartController::class, 'clearCart'])->name('cart.clear');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::post('/confirmer-commande', [CartController::class, 'confirmOrder'])->name('order.confirm');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

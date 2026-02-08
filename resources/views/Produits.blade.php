@@ -38,6 +38,21 @@
                                     <strong>Prix:</strong> {{ $item['prix'] }} DH
                                 </p>
                             @endauth
+                            
+                            @if(!Auth::check() || Auth::user()->role !== 'ADMIN')
+                                <form action="{{ route('cart.add') }}" method="POST" class="w-100 mt-2">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $item['id'] }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                            <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+                                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                        </svg>
+                                        Ajouter au panier
+                                    </button>
+                                </form>
+                            @endif
                             @if(Auth::check() && Auth::user()->role === 'ADMIN')
                                 <div class="mt-4 flex gap-2">
                                     <a href="{{ route('produits.edit', $item['id']) }}" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-opacity-90 transition-colors text-sm">Éditer</a>
@@ -121,3 +136,27 @@
     {{ $products->links('pagination::bootstrap-5') }}
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    function addToCart(productName) {
+        // Create a custom alert or toast
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'alert alert-success alert-dismissible fade show fixed-bottom m-3';
+        alertDiv.style.maxWidth = '400px';
+        alertDiv.style.zIndex = '9999';
+        alertDiv.setAttribute('role', 'alert');
+        alertDiv.innerHTML = `
+            <strong>Succès!</strong> ${productName} a été ajouté au panier.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+        document.body.appendChild(alertDiv);
+        
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+            const bsAlert = new bootstrap.Alert(alertDiv);
+            bsAlert.close();
+        }, 3000);
+    }
+</script>
+@endpush
