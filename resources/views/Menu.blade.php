@@ -97,6 +97,29 @@
                     </li>
                 @endauth
                
+                <!-- Language Switcher -->
+                <li class="relative group ml-4">
+                    <button class="flex items-center gap-1 hover:text-white transition-colors uppercase font-semibold py-2">
+                        {{ App::getLocale() }}
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- Dropdown with padding-top to bridge the gap -->
+                    <div class="absolute right-0 pt-2 w-32 hidden group-hover:block z-50">
+                        <div class="bg-white rounded-lg shadow-xl py-2 overflow-hidden border border-gray-100">
+                            <a href="{{ route('lang.switch', 'fr') }}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-primary hover:text-white transition-colors {{ App::getLocale() == 'fr' ? 'bg-gray-50 font-bold' : '' }}">
+                                🇫🇷 Français
+                            </a>
+                            <a href="{{ route('lang.switch', 'en') }}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-primary hover:text-white transition-colors {{ App::getLocale() == 'en' ? 'bg-gray-50 font-bold' : '' }}">
+                                🇬🇧 English
+                            </a>
+                            <a href="{{ route('lang.switch', 'ar') }}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-primary hover:text-white transition-colors {{ App::getLocale() == 'ar' ? 'bg-gray-50 font-bold' : '' }}">
+                                🇸🇦 العربية
+                            </a>
+                        </div>
+                    </div>
+                </li>
             </ul>
 
             <!-- Mobile Menu Button -->
@@ -196,6 +219,21 @@
                         </form>
                     </li>
                 @endauth
+
+                <!-- Mobile Language Switcher -->
+                <li class="pt-4 mt-4 border-t border-gray-700">
+                    <div class="flex items-center justify-around">
+                        <a href="{{ route('lang.switch', 'fr') }}" class="flex items-center gap-2 px-4 py-2 rounded-lg {{ App::getLocale() == 'fr' ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white' }}">
+                            <span>🇫🇷</span> FR
+                        </a>
+                        <a href="{{ route('lang.switch', 'en') }}" class="flex items-center gap-2 px-4 py-2 rounded-lg {{ App::getLocale() == 'en' ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white' }}">
+                            <span>🇬🇧</span> EN
+                        </a>
+                        <a href="{{ route('lang.switch', 'ar') }}" class="flex items-center gap-2 px-4 py-2 rounded-lg {{ App::getLocale() == 'ar' ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white' }}">
+                            <span>🇸🇦</span> AR
+                        </a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

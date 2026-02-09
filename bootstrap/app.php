@@ -26,6 +26,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'adminuser' => \App\Http\Middleware\AdminUserMiddleware::class,
             'useruser' => \App\Http\Middleware\UserMiddleware::class,
         ]);
+
+        $middleware->web(append: [
+            \App\Http\Middleware\SetLocale::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

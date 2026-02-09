@@ -15,7 +15,7 @@
                         @auth
                             @if(Auth::user()->role !== 'ADMIN' && !in_array(strtolower($categorie), ['men', 'women']))
                                 <span class="badge bg-danger position-absolute" style="top: 10px; left: 10px; font-size: 0.9rem; z-index: 10; padding: 8px 12px;">
-                                    <i class="fas fa-tag me-1"></i> -20% SOLDE
+                                    <i class="fas fa-tag me-1"></i> {{ __('produits.sale') }}
                                 </span>
                             @endif
                         @endauth
@@ -30,12 +30,12 @@
                                     </p>
                                 @else
                                     <p class="card-text text-muted">
-                                        <strong>Prix:</strong> {{ $item['prix'] }} DH
+                                        <strong>{{ __('produits.price') }}:</strong> {{ $item['prix'] }} DH
                                     </p>
                                 @endif
                             @else
                                 <p class="card-text text-muted">
-                                    <strong>Prix:</strong> {{ $item['prix'] }} DH
+                                    <strong>{{ __('produits.price') }}:</strong> {{ $item['prix'] }} DH
                                 </p>
                             @endauth
                             
@@ -49,17 +49,17 @@
                                             <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
                                             <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                                         </svg>
-                                        Ajouter au panier
+                                        {{ __('produits.add_to_cart') }}
                                     </button>
                                 </form>
                             @endif
                             @if(Auth::check() && Auth::user()->role === 'ADMIN')
                                 <div class="mt-4 flex gap-2">
-                                    <a href="{{ route('produits.edit', $item['id']) }}" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-opacity-90 transition-colors text-sm">Éditer</a>
+                                    <a href="{{ route('produits.edit', $item['id']) }}" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-opacity-90 transition-colors text-sm">{{ __('produits.edit') }}</a>
                                     <form action="{{ route('produits.destroy', $item['id']) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition-colors text-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
+                                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition-colors text-sm" onclick="return confirm('{{ __('produits.delete_confirm') }}')">{{ __('produits.delete') }}</button>
                                     </form>
                                 </div>
                             @endif
@@ -71,19 +71,19 @@
 
         <hr class="my-5">
         
-        <h3 class="mb-4">Vue Détaillée</h3>
+        <h3 class="mb-4">{{ __('produits.detailed_view') }}</h3>
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <th>Nom</th>
-                        <th>Prix</th>
+                        <th>{{ __('produits.name') }}</th>
+                        <th>{{ __('produits.price') }}
                         @auth
                             @if(Auth::user()->role !== 'ADMIN' && !in_array(strtolower($categorie), ['men', 'women']))
-                                <th>Solde</th>
+                                <th>{{ __('produits.sale') }}</th>
                             @endif
                         @endauth
-                        <th>Image</th>
+                        <th>{{ __('produits.image') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,7 +93,7 @@
                                 <strong>{{ $item['titre'] }}</strong>
                                 @auth
                                     @if(Auth::user()->role !== 'ADMIN' && !in_array(strtolower($categorie), ['men', 'women']))
-                                        <span class="badge bg-danger ms-2">-20%</span>
+                                        <span class="badge bg-danger ms-2">{{ __('produits.sale') }}</span>
                                     @endif
                                 @endauth
                             </td>
@@ -125,13 +125,13 @@
         </div>
     @else
         <div class="alert alert-warning" role="alert">
-            <h4 class="alert-heading">Aucun produit</h4>
-            <p>Désolé, aucun produit n'est disponible dans cette catégorie.</p>
+            <h4 class="alert-heading">{{ __('produits.no_products') }}</h4>
+            <p>{{ __('produits.no_products_msg') }}</p>
         </div>
     @endif
     
     <div class="mt-4">
-        <a href="/" class="inline-block px-4 py-2 bg-secondary text-white rounded hover:bg-opacity-90 transition-colors">Retour à l'accueil</a>
+        <a href="/" class="inline-block px-4 py-2 bg-secondary text-white rounded hover:bg-opacity-90 transition-colors">{{ __('produits.back_home') }}</a>
     </div>
     {{ $products->links('pagination::bootstrap-5') }}
 </div>
@@ -147,7 +147,7 @@
         alertDiv.style.zIndex = '9999';
         alertDiv.setAttribute('role', 'alert');
         alertDiv.innerHTML = `
-            <strong>Succès!</strong> ${productName} a été ajouté au panier.
+            <strong>Succès!</strong> ${productName} {{ __('produits.success_added') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         `;
         document.body.appendChild(alertDiv);

@@ -60,4 +60,12 @@ Route::get('/send/email', function () {
     return redirect()->route('email.form');
 });
 
+// Language Switcher Route
+Route::get('lang/{lang}', function ($lang) {
+    if (in_array($lang, ['en', 'fr', 'ar'])) {
+        session(['locale' => $lang]);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
 require __DIR__.'/auth.php';

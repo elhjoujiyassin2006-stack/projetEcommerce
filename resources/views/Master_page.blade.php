@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ App::getLocale() }}" dir="{{ App::getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -167,17 +167,17 @@
                 <div class="relative container mx-auto px-6 py-24 md:py-32">
                     <div class="max-w-2xl text-white">
                         <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                            Découvrez l'Excellence <span class="text-primary">PrimeShop</span>
+                            {{ __('home.welcome_title') }}
                         </h1>
                         <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
-                            Explorez notre collection exclusive de produits premium. Qualité, style et élégance réunis pour votre satisfaction.
+                            {{ __('home.welcome_subtitle') }}
                         </p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="/produits/categorie/Men" class="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-opacity-90 text-white font-semibold rounded-lg transition-colors duration-200">
-                                Collection Homme
+                <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="{{ route('products.category', 'Men') }}" class="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-opacity-90 text-white font-semibold rounded-lg transition-colors duration-200">
+                                {{ __('home.men_collection') }}
                             </a>
-                            <a href="/produits/categorie/Women" class="inline-flex items-center justify-center px-8 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">
-                                Collection Femme
+                            <a href="{{ route('products.category', 'Women') }}" class="inline-flex items-center justify-center px-8 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">
+                                {{ __('home.women_collection') }}
                             </a>
                         </div>
                     </div>
@@ -186,7 +186,7 @@
 
             <!-- Featured Categories -->
             <div class="mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Nos Collections</h2>
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">{{ __('home.featured_categories') }}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Men Category -->
                     <a href="/produits/categorie/Men" class="group relative overflow-hidden rounded-2xl aspect-[4/3] block">
@@ -195,9 +195,9 @@
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
                             <div>
-                                <h3 class="text-2xl font-bold text-white mb-2">Hommes</h3>
+                                <h3 class="text-2xl font-bold text-white mb-2">{{ __('home.men_collection') }}</h3>
                                 <p class="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
-                                    Découvrir la collection
+                                    {{ __('home.discover_collection') }}
                                 </p>
                             </div>
                         </div>
@@ -210,9 +210,9 @@
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
                             <div>
-                                <h3 class="text-2xl font-bold text-white mb-2">Femmes</h3>
+                                <h3 class="text-2xl font-bold text-white mb-2">{{ __('home.women_collection') }}</h3>
                                 <p class="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
-                                    Découvrir la collection
+                                    {{ __('home.discover_collection') }}
                                 </p>
                             </div>
                         </div>
@@ -228,8 +228,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Produits Premium</h3>
-                    <p class="text-gray-600 text-sm">Une sélection rigoureuse des meilleures marques et produits.</p>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ __('home.premium_products') }}</h3>
+                    <p class="text-gray-600 text-sm">{{ __('home.premium_products_desc') }}</p>
                 </div>
                 
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
@@ -238,8 +238,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Livraison Rapide</h3>
-                    <p class="text-gray-600 text-sm">Expédition express pour recevoir vos articles au plus vite.</p>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ __('home.fast_delivery') }}</h3>
+                    <p class="text-gray-600 text-sm">{{ __('home.fast_delivery_desc') }}</p>
                 </div>
 
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
@@ -248,8 +248,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Paiement Sécurisé</h3>
-                    <p class="text-gray-600 text-sm">Transactions 100% sécurisées pour votre tranquillité d'esprit.</p>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ __('home.secure_payment') }}</h3>
+                    <p class="text-gray-600 text-sm">{{ __('home.secure_payment_desc') }}</p>
                 </div>
             </div>
             @endif
